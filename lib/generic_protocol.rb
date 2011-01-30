@@ -6,9 +6,7 @@ class GenericProtocol < EventMachine::Connection
   
   def recieve_data(data)
     @connection_data_stream << data
-    operation = proc { process_connection_data }
-    callback = proc { |result| result }
-    EventMachine.defer(operation,callback)
+    process_connection_data
   end
   
   def send_packet(packet)
